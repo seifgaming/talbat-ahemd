@@ -1,0 +1,169 @@
+@import "compass/css3";
+
+/* ======================================
+   Variables
+   ====================================== */
+
+$purple: rgb(173,123,214);
+
+/* ======================================
+   Mixins
+   ====================================== */
+
+@mixin animation-name($name) {
+	-webkit-animation-name: $name;
+	-moz-animation-name: $name;
+	-o-animation-name: $name;
+	animation-name: $name;
+}
+
+@mixin animation-fill-mode($mode) {
+	-webkit-animation-fill-mode: $mode;
+	-moz-animation-fill-mode: $mode;
+	-ms-animation-fill-mode: $mode;
+	-o-animation-fill-mode: $mode;
+	animation-fill-mode: $mode;
+}
+
+@mixin animation-duration($sec){
+	-webkit-animation-duration: $sec;
+	-moz-animation-duration: $sec;
+	-ms-animation-duration: $sec;
+	-o-animation-duration: $sec;
+	animation-duration: $sec;
+}
+
+@mixin keyframes($name) {
+	@-webkit-keyframes $name {
+		@content;
+	}
+
+	@-moz-keyframes $name {
+		@content;
+	}
+
+	@-ms-keyframes $name {
+		@content;
+	}
+
+	@-o-keyframes $name {
+		@content;
+	}
+
+	@keyframes $name {
+		@content;
+	}
+}
+
+/* ======================================
+   Layout & Styling
+   ====================================== */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: $purple;
+  padding: 3.75em;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  position: relative;
+}
+
+h1 {
+  margin-top: 1em;
+  font-size: 6em;
+  font-weight: 400;
+  font-style: italic;
+  color: darken($purple, 50%);
+  text-transform: capitalize;
+  letter-spacing: 0.03125em;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0.25em 0.75em;
+  margin: 0 0 0 -3em;
+  border: 0 none;
+  border-radius: 3px;
+  outline: none;
+  background-color: darken($purple, 10%);
+  font-size: 2em;
+  font-weight: 300;
+  color: darken($purple, 20%);
+  @include box-shadow(0 5px darken($purple, 20%));
+  @include transition(all 0.25s ease);
+  
+  &:hover {
+    color: lighten($purple, 35%); 
+    background-color: darken($purple, 15%);
+  }
+  
+  &:active {
+    @include transform(translateY(5px));
+    @include box-shadow(0 0 darken($purple, 20%));
+  }
+}
+
+
+/* ======================================
+   Animations
+   ====================================== */
+.animate {
+  @include animation-fill-mode(both);
+  @include animation-duration(0.6s);
+}
+
+.bounceIn {
+	@include animation-name(bounceIn);
+}
+
+.bounceOut {
+	@include animation-name(bounceOut);
+}
+
+@include keyframes(bounceIn) {
+	0% {
+		opacity: 0;
+		@include transform(scale(.75));
+	}
+
+	50% {
+		opacity: 1;
+		@include transform(scale(1.02));
+	}
+
+	70% {
+		@include transform(scale(.98));
+	}
+
+	100% {
+		@include transform(scale(1));
+	}
+}
+
+@include keyframes(bounceOut) {
+	0% {
+		@include transform(scale(1));
+	}
+
+	25% {
+		@include transform(scale(1.02));
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		@include transform(scale(.75));
+	}
+}
