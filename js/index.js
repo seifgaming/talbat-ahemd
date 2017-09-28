@@ -18,7 +18,7 @@
 		};
 	
 		var letterCount = function(num){
-			return num || (Math.floor(Math.random()*5)+1)*2;
+			return num || (Math.floor(Math.random()*1)+1)*4;
 		};
 	
 		var randomWord = function(num){
